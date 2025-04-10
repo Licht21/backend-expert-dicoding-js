@@ -24,6 +24,15 @@ const createServer = ({mathBasic}) => {
                 const value = mathBasic.subtract(Number(a), Number(b))
                 return {value}
             }
+        },
+        {
+            method: 'GET',
+            path: '/multiply/{a}/{b}',
+            handler: (request) => {
+                const {a, b} = request.params
+                const value = mathBasic.multiply(Number(a), Number(b))
+                return {value}
+            }
         }
     ])
 
