@@ -82,4 +82,75 @@ describe('A FigureCalculator', () => {
             expect(spyMultiply).toHaveBeenCalledWith(length,width)
         })
     })
+
+    describe('A calculateTriaglePerimeter function', () => {
+        it('should throw an error when not given 2 parameter', () => {
+            const figureCalculator = new FigureCalculator({})
+
+            expect(() => figureCalculator.calculateTrianglePerimeter()).toThrow()
+            expect(() => figureCalculator.calculateTrianglePerimeter(1)).toThrow()
+            expect(() => figureCalculator.calculateTrianglePerimeter(1,2)).toThrow()
+            expect(() => figureCalculator.calculateTrianglePerimeter(1,2,3,4)).toThrow()
+        })
+
+        it('should throw an error when given non-numbers parameters', () => {
+            const figureCalculator = new FigureCalculator({})
+
+            expect(() => figureCalculator.calculateTrianglePerimeter({}, [], 1)).toThrow()
+            expect(() => figureCalculator.calculateTrianglePerimeter({}, "1", 2)).toThrow()
+            expect(() => figureCalculator.calculateTrianglePerimeter([], 1, {})).toThrow()
+        })
+
+        it('should return exact values of perimeter of triangle', () => {
+            // Arrange
+            const sideA = 10
+            const sideB = 20
+            const base = 10
+            const figureCalculator = new FigureCalculator(MathBasic)
+            const spyAdd = jest.spyOn(MathBasic, 'add')
+
+            // Action
+            const result = figureCalculator.calculateTrianglePerimeter(sideA, sideB, base)
+
+            // Assert
+            expect(result).toEqual(40)
+            expect(spyAdd).toHaveBeenCalledWith(sideA,sideB)
+            expect(spyAdd).toHaveBeenCalledWith(30,base)
+        })
+    })
+
+    describe('A calculateTriangleArea', () => {
+        it('should throw an error when not given 2 parameters', () => {
+            const figureCalculator = new FigureCalculator({})
+
+            expect(() => figureCalculator.calculateTriangleArea()).toThrow()
+            expect(() => figureCalculator.calculateTriangleArea(1)).toThrow()
+            expect(() => figureCalculator.calculateTriangleArea(1,2,3)).toThrow()
+        })
+
+        it('should throw an error when given non-numbers parameters', () => {
+            const figureCalculator = new FigureCalculator({})
+
+            expect(() => figureCalculator.calculateTriangleArea({},1)).toThrow()
+            expect(() => figureCalculator.calculateTriangleArea(1,'1')).toThrow()
+            expect(() => figureCalculator.calculateTriangleArea(2,[])).toThrow()
+        })
+
+        it('should return exact values of area of triangle', () => {
+            // Arrange
+            const height = 10
+            const base = 20
+            const spyDivide = jest.spyOn(MathBasic,'divide')
+            const spyMultiply = jest.spyOn(MathBasic,'multiply')
+            const figureCalculator = new FigureCalculator(MathBasic)
+
+            // Action
+            const result = figureCalculator.calculateTriangleArea(height, base)
+
+            // Assert
+            expect(result).toEqual(100)
+            expect(spyDivide).toHaveBeenCalledWith(height * base,2)
+            expect(spyMultiply).toHaveBeenCalledWith(height,base)
+        })
+    })
 })
