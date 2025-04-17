@@ -5,8 +5,8 @@ describe('AuthenticationRepository Interface', () => {
         // Arrange
         const authenticationRepository = new AuthenticationRepository()
 
-        expect(authenticationRepository.addRefreshToken({})).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED')
-        expect(authenticationRepository.verifyRefreshToken({})).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED')
-        expect(authenticationRepository.deleteRefreshToken({})).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED')
+        expect(authenticationRepository.addRefreshToken('')).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED')
+        expect(authenticationRepository.verifyRefreshToken('')).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED')
+        expect(authenticationRepository.deleteRefreshToken('')).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED')
     })
 })
