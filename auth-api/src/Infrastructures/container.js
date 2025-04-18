@@ -6,15 +6,21 @@ const { createContainer } = require('instances-container')
 const { nanoid } = require('nanoid')
 const bcrypt = require('bcrypt')
 const pool = require('./database/postgres/pool')
+const Jwt = require('@hapi/jwt')
 
 // service
-const UserRepositoryPostgres = require('./repositories/UserRepositoryPostgres')
-const BcryptPasswordHash = require('./security/BcryptPasswordHash')
-const PasswordHash = require('../Applications/security/PasswordHash')
 const UserRepository = require('../Domains/users/UserRepository')
+const UserRepositoryPostgres = require('./repositories/UserRepositoryPostgres')
+const PasswordHash = require('../Applications/security/PasswordHash')
+const BcryptPasswordHash = require('./security/BcryptPasswordHash')
+const AuthenticationTokenManager = require('../Applications/security/AuthenticationTokenManager')
+const JwtTokenManager = require('./security/JwtTokenManager')
+const AuthenticationRepository = require('../Domains/authentications/AuthenticationRepository')
+const AuthenticationRepositoryPostgres = require('./repositories/AuthenticationRepositoryPostgres')
 
 // use case
 const AddUserUseCase = require('../Applications/use_cases/AddUserUseCase')
+const LoginUserUseCase = require('../Applications/use_cases/LoginUserUseCase')
 
 // creating container
 const container = createContainer()
@@ -45,6 +51,28 @@ container.register([
                 }
             ]
         }
+    },
+    {
+        key: AuthenticationTokenManager.name,
+        Class: JwtTokenManager,
+        parameter: {
+            dependencies: [
+                {
+                    concrete: Jwt.token
+                }
+            ]
+        }
+    },
+    {
+        key: AuthenticationRepository.name,
+        Class: AuthenticationRepositoryPostgres,
+        parameter: {
+            dependencies: [
+                {
+                    concrete: pool
+                }
+            ]
+        }
     }
 ])
 
@@ -63,6 +91,31 @@ container.register([
                 {
                     name: 'passwordHash',
                     internal: PasswordHash.name
+                }
+            ]
+        }
+    },
+    {
+        key: LoginUserUseCase.name,
+        Class: LoginUserUseCase,
+        parameter: {
+            injectType: 'destructuring',
+            dependencies: [
+                {
+                    name: 'userRepository',
+                    internal: UserRepository.name
+                },
+                {
+                    name: 'authenticationTokenManager',
+                    internal: AuthenticationTokenManager.name
+                },
+                {
+                    name: 'passwordHash',
+                    internal: PasswordHash.name
+                },
+                {
+                    name: 'authenticationRepository',
+                    internal: AuthenticationRepository.name
                 }
             ]
         }

@@ -73,4 +73,46 @@ describe('UserRepositoryPostgres', () => {
             }))
         })
     })
+
+    describe('getIdByUsername function', () => {
+        it('should return id was found on database', async () => {
+            // Arrange
+            const registerUser = new RegisterUser({
+                username: 'dicoding',
+                password: 'secret_password',
+                fullname: 'Dicoding Indonesia'
+            })
+            const fakeIdGenerator = () => '123'
+            const userRepositoryPostgres = new UserRepositoryPostgres(pool, fakeIdGenerator)
+            await userRepositoryPostgres.addUser(registerUser)
+
+            // Action and Assert
+            const id = await userRepositoryPostgres.getIdByUsername(registerUser.username)
+
+            expect(id).toEqual('user-123')
+        })
+    })
+
+    describe('getPasswordByUsername function', () => {
+        it('should return password found in database base on username', async () => {
+            // Arrange
+            const registerUser = {
+                username: 'aulia',
+                password: 'secret_password'
+            }
+            const userRepositoryPostgres = new UserRepositoryPostgres(pool, {})
+            await UsersTableTestHelper.addUser(registerUser)
+            // Action and Assert
+            const password = await userRepositoryPostgres.getPasswordByUsername(registerUser.username)
+            expect(password).toEqual('secret_password')
+        })
+
+        it('should throw InvariantError when password not found in database', async () => {
+            // Arrange
+            const userRepositoryPostgres = new UserRepositoryPostgres(pool, {})
+
+            // Action and Assert
+            await expect(userRepositoryPostgres.getPasswordByUsername('dicoding')).rejects.toThrow(InvariantError)
+        })
+    })
 })

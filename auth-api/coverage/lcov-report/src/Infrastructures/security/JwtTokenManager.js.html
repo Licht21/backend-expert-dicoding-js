@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/Applications/use_cases/AddUserUseCase.js</title>
+    <title>Code coverage report for src/Infrastructures/security/JwtTokenManager.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/Applications/use_cases</a> AddUserUseCase.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/Infrastructures/security</a> JwtTokenManager.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -79,7 +79,8 @@
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -88,30 +89,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">const RegisterUser = require('../../Domains/users/entities/RegisterUser')
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">const AuthenticationTokenManager = require('../../Applications/security/AuthenticationTokenManager')
 &nbsp;
-class AddUserUseCase {
-    constructor({userRepository, passwordHash}) {
-        this._userRepository = userRepository
-        this._passwordHash = passwordHash
+class JwtTokenManager extends AuthenticationTokenManager {
+    constructor(jwt) {
+        super()
+        this._jwt = jwt
     }
 &nbsp;
-    async execute(useCasePayload) {
-        const registerUser = new RegisterUser(useCasePayload)
-        await this._userRepository.verifyAvailableUsername(registerUser.username)
-        registerUser.password = await this._passwordHash.hash(registerUser.password)
-        return this._userRepository.addUser(registerUser)
+    async createAccessToken(payload) {
+        return await this._jwt.generate(payload, process.env.ACCESS_TOKEN_KEY)
+    }
+&nbsp;
+    async createRefreshToken(payload) {
+        return await this._jwt.generate(payload, process.env.REFRESH_TOKEN_KEY)
     }
 }
 &nbsp;
-module.exports = AddUserUseCase</pre></td></tr></table></pre>
+module.exports = JwtTokenManager</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
