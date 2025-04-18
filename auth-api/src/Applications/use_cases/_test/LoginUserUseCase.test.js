@@ -48,7 +48,6 @@ describe('LoginUserUseCase', () => {
         
         // Action
         const loginUser = await loginUserUseCase.execute(useCasePayload)
-        console.log(loginUser)
 
         // Assert
         expect(loginUser).toStrictEqual(new NewAuth({

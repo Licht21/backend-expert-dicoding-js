@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1744901733016" clover="3.2.0">
-  <project timestamp="1744901733016" name="All files">
-    <metrics statements="176" coveredstatements="176" conditionals="54" coveredconditionals="54" methods="39" coveredmethods="39" elements="269" coveredelements="269" complexity="0" loc="176" ncloc="176" packages="12" files="22" classes="22"/>
+<coverage generated="1744950527811" clover="3.2.0">
+  <project timestamp="1744950527811" name="All files">
+    <metrics statements="190" coveredstatements="188" conditionals="58" coveredconditionals="56" methods="44" coveredmethods="44" elements="292" coveredelements="288" complexity="0" loc="190" ncloc="190" packages="12" files="23" classes="23"/>
     <package name="Applications.security">
-      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
       <file name="AuthenticationTokenManager.js" path="C:\Users\Lenovo\Desktop\Backend Expert Dicoding\auth-api\src\Applications\security\AuthenticationTokenManager.js">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
       </file>
       <file name="PasswordHash.js" path="C:\Users\Lenovo\Desktop\Backend Expert Dicoding\auth-api\src\Applications\security\PasswordHash.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -18,7 +20,7 @@
       </file>
     </package>
     <package name="Applications.use_cases">
-      <metrics statements="23" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="35" coveredstatements="33" conditionals="4" coveredconditionals="2" methods="7" coveredmethods="7"/>
       <file name="AddUserUseCase.js" path="C:\Users\Lenovo\Desktop\Backend Expert Dicoding\auth-api\src\Applications\use_cases\AddUserUseCase.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
@@ -47,6 +49,21 @@
         <line num="25" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
+      </file>
+      <file name="RefreshAuthenticationUseCase.js" path="C:\Users\Lenovo\Desktop\Backend Expert Dicoding\auth-api\src\Applications\use_cases\RefreshAuthenticationUseCase.js">
+        <metrics statements="12" coveredstatements="10" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="23" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Commons.exceptions">
@@ -97,7 +114,7 @@
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
       </file>
     </package>
     <package name="Domains.authentications.entities">
@@ -181,8 +198,8 @@
         <line num="8" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>

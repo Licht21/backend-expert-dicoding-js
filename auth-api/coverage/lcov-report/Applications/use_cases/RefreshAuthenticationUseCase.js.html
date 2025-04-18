@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Applications/use_cases/LoginUserUseCase.js</title>
+    <title>Code coverage report for Applications/use_cases/RefreshAuthenticationUseCase.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">Applications/use_cases</a> LoginUserUseCase.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">Applications/use_cases</a> RefreshAuthenticationUseCase.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
@@ -93,21 +93,10 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,45 +104,62 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const LoginUser = require('../../Domains/users/entities/LoginUser')
-const NewAuth = require('../../Domains/authentications/entities/NewAuth')
-&nbsp;
-class LoginUserUseCase {
-    constructor({userRepository, authenticationTokenManager, passwordHash, authenticationRepository}) {
-        this._userRepository = userRepository
-        this._authenticationTokenManager = authenticationTokenManager
-        this._passwordHash = passwordHash
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">class RefreshAuthenticationUseCase {
+    constructor({authenticationRepository, authenticationTokenManager}) {
         this._authenticationRepository = authenticationRepository
+        this._authenticationTokenManager = authenticationTokenManager
     }
 &nbsp;
     async execute(useCasePayload) {
-        const loginUser = new LoginUser(useCasePayload)
-        const encryptedPassword = await this._userRepository.getPasswordByUsername(loginUser.username)
-        await this._passwordHash.comparePassword(useCasePayload.password, encryptedPassword)
-        const userId = await this._userRepository.getIdByUsername(useCasePayload.username)
-        const accessToken = await this._authenticationTokenManager.createAccessToken({
-            id: userId,
-            username: useCasePayload.username
+        this._verifyPayload(useCasePayload)
+&nbsp;
+        await this._authenticationTokenManager.verifyRefreshToken(useCasePayload)
+        await this._authenticationRepository.checkRefreshToken(useCasePayload)
+&nbsp;
+        const { id, username } = await this._authenticationTokenManager.decodePayload(useCasePayload)
+&nbsp;
+        return await this._authenticationTokenManager.createAccessToken({
+            id,
+            username
         })
-        const refreshToken = await this._authenticationTokenManager.createRefreshToken({
-            id: userId,
-            username: useCasePayload.username
-        })
-        await this._authenticationRepository.addRefreshToken(refreshToken)
-        
-        return new NewAuth({accessToken,refreshToken})
+&nbsp;
+    }
+&nbsp;
+    _verifyPayload(payload) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if(!payload) {
+<span class="cstat-no" title="statement not covered" >            throw new Error('REFRESH_AUTHENTICATION.NOT_CONTAIN_NEEDED_PROPERTY')</span>
+        }
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if(typeof payload !== 'string') {
+<span class="cstat-no" title="statement not covered" >            throw new Error('REFRESH_AUTHENTICATION.NOT_MEET_DATA_TYPE_SPECIFICATION')</span>
+        }
     }
 }
 &nbsp;
-module.exports = LoginUserUseCase</pre></td></tr></table></pre>
+module.exports = RefreshAuthenticationUseCase</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
